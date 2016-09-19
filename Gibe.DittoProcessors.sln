@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibe.DittoProcessors", "Gibe.DittoProcessors\Gibe.DittoProcessors.csproj", "{EB493949-BFFB-4595-9A71-DB9C641A795A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibe.DittoServices", "Ditto.Services\Gibe.DittoServices.csproj", "{71E1A2DB-2246-4177-9A0B-83301B8C1BD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibe.DittoServices", "Gibe.DittoServices\Gibe.DittoServices.csproj", "{71E1A2DB-2246-4177-9A0B-83301B8C1BD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
