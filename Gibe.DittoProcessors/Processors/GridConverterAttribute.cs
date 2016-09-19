@@ -13,8 +13,17 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class GridConverterAttribute : DittoProcessorAttribute
 	{
-		[Inject]
-		public IMediaService MediaService { private get; set; }
+		private readonly IMediaService _mediaService;
+
+		public GridConverterAttribute(IMediaService mediaService)
+		{
+			_mediaService = mediaService;
+		}
+
+		public GridConverterAttribute()
+		{
+			_mediaService = DependencyResolver.Current.GetService<IMediaService>();
+		}
 
 		public override object ProcessValue()
 		{
@@ -35,7 +44,7 @@ namespace Gibe.DittoProcessors.Processors
 						break;
 					case GridEditorAliases.Media:
 						var gridContentMediaValue = JsonConvert.DeserializeObject<GridContentMediaValue>(control.Value.ToString());
-						var mediaImage = MediaService.GetImage(gridContentMediaValue.Id);
+						var mediaImage = _mediaService.GetImage(gridContentMediaValue.Id);
 						mediaImage.Caption = gridContentMediaValue.Caption;
 						control.MediaImage = mediaImage;
 						break;

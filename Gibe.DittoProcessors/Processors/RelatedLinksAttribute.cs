@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using Gibe.DittoProcessors.Processors.Models;
 using Gibe.UmbracoWrappers;
 using Newtonsoft.Json;
@@ -11,9 +12,18 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class RelatedLinksAttribute : DittoProcessorAttribute
 	{
-		[Inject]
-		public IUmbracoWrapper UmbracoWrapper { private get; set; }
-		
+		private readonly IUmbracoWrapper _umbracoWrapper;
+
+		public RelatedLinksAttribute()
+		{
+			_umbracoWrapper = DependencyResolver.Current.GetService<IUmbracoWrapper>();
+		}
+
+		public RelatedLinksAttribute(IUmbracoWrapper umbracoWrapper)
+		{
+			_umbracoWrapper = umbracoWrapper;
+		}
+
 		public override object ProcessValue()
 		{
 			if (string.IsNullOrEmpty(Value?.ToString()))
@@ -27,8 +37,8 @@ namespace Gibe.DittoProcessors.Processors
 
 		private RelatedLinkModel ConvertToRelatedLinkModel(RelatedLink link)
 		{
-			var url = link.IsInternal && link.Internal.HasValue ? 
-				UmbracoWrapper.TypedContent(link.Internal.Value)?.Url 
+			var url = link.IsInternal && link.Internal.HasValue ?
+				_umbracoWrapper.TypedContent(link.Internal.Value)?.Url 
 				: link.Link;
 
 			if (url == null)

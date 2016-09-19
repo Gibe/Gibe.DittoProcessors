@@ -1,12 +1,22 @@
-﻿using Gibe.UmbracoWrappers;
+﻿using System.Web.Mvc;
+using Gibe.UmbracoWrappers;
 using Ninject;
 
 namespace Gibe.DittoProcessors.Processors
 {
 	public class ContentPickerToUrlAttribute : TestableDittoProcessorAttribute
 	{
-		[Inject]
-		public IUmbracoWrapper UmbracoWrapper { private get; set; }
+		private readonly IUmbracoWrapper _umbracoWrapper;
+
+		public ContentPickerToUrlAttribute()
+		{
+			_umbracoWrapper = DependencyResolver.Current.GetService<IUmbracoWrapper>();
+		}
+
+		public ContentPickerToUrlAttribute(IUmbracoWrapper umbracoWrapper)
+		{
+			_umbracoWrapper = umbracoWrapper;
+		}
 
 		public override object ProcessValue()
 		{
@@ -16,7 +26,7 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 			
-			return UmbracoWrapper.TypedContent(id)?.Url;
+			return _umbracoWrapper.TypedContent(id)?.Url;
 		}
 	}
 }

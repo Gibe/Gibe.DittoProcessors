@@ -1,4 +1,5 @@
-﻿using Gibe.DittoProcessors.Media;
+﻿using System.Web.Mvc;
+using Gibe.DittoProcessors.Media;
 using Ninject;
 using Our.Umbraco.Ditto;
 
@@ -6,9 +7,18 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class ImagePickerAttribute : DittoProcessorAttribute
 	{
-		[Inject]
-		public IMediaService MediaService { private get; set; }
-		
+		private readonly IMediaService _mediaService;
+
+		public ImagePickerAttribute(IMediaService mediaService)
+		{
+			_mediaService = mediaService;
+		}
+
+		public ImagePickerAttribute()
+		{
+			_mediaService = DependencyResolver.Current.GetService<IMediaService>();
+		}
+
 		public override object ProcessValue()
 		{
 			int id;
@@ -17,7 +27,7 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 
-			return MediaService.GetImage(id);
+			return _mediaService.GetImage(id);
 		}
 	}
 }
