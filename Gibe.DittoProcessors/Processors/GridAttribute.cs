@@ -11,16 +11,16 @@ using Umbraco.Web.Templates;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class GridConverterAttribute : DittoProcessorAttribute
+	public class GridAttribute : DittoProcessorAttribute
 	{
 		private readonly IMediaService _mediaService;
 
-		public GridConverterAttribute(IMediaService mediaService)
+		public GridAttribute(IMediaService mediaService)
 		{
 			_mediaService = mediaService;
 		}
 
-		public GridConverterAttribute()
+		public GridAttribute()
 		{
 			_mediaService = DependencyResolver.Current.GetService<IMediaService>();
 		}

@@ -252,14 +252,14 @@
     <Compile Include="Media\Models\MediaFileModel.cs" />
     <Compile Include="Media\Models\MediaImageModel.cs" />
     <Compile Include="Processors\MultiNodeTreePickerAttribute.cs" />
-    <Compile Include="Processors\ChildrenTypeAttribute.cs" />
+    <Compile Include="Processors\ChildrenAttribute.cs" />
     <Compile Include="Processors\ArchetypeMailAddressAttribute.cs" />
     <Compile Include="Processors\ArchetypeStringListAttribute.cs" />
     <Compile Include="Processors\ContentPickerToUrlAttribute.cs" />
     <Compile Include="Processors\ContentPickerAttribute.cs" />
     <Compile Include="Processors\FilePickerAttribute.cs" />
     <Compile Include="Processors\GetPreValueAsStringAttribute.cs" />
-    <Compile Include="Processors\GridConverterAttribute.cs" />
+    <Compile Include="Processors\GridAttribute.cs" />
     <Compile Include="Processors\ImagePickerAttribute.cs" />
     <Compile Include="Processors\LinkPickerAttribute.cs" />
     <Compile Include="Processors\MetaSEOAttribute.cs" />
@@ -273,6 +273,7 @@
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
     <Compile Include="Processors\TagsAttribute.cs" />
     <Compile Include="Processors\TestableDittoProcessorAttribute.cs" />
+    <Compile Include="Processors\UrlAttribute.cs" />
     <Compile Include="Processors\UserPickerAttribute.cs" />
     <Compile Include="Processors\VideoPickerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
