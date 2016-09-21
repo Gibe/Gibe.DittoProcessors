@@ -270,6 +270,7 @@
     <Compile Include="Processors\Models\RelatedLinkModel.cs" />
     <Compile Include="Processors\MultipleImagePickerAttribute.cs" />
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
+    <Compile Include="Processors\ParentAttribute.cs" />
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
     <Compile Include="Processors\TagsAttribute.cs" />
     <Compile Include="Processors\TestableDittoProcessorAttribute.cs" />
