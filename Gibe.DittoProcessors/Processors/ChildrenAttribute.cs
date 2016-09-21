@@ -8,7 +8,7 @@ namespace Gibe.DittoProcessors.Processors
 	{
 		private readonly string _docTypeAlias;
 		
-		protected ChildrenAttribute(string docTypeAlias)
+		public ChildrenAttribute(string docTypeAlias)
 		{
 			_docTypeAlias = docTypeAlias;
 		}
