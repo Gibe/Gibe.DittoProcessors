@@ -25,7 +25,11 @@ namespace Gibe.DittoProcessors.Processors
 
 			if (link.Id != default(int))
 			{
-				link.Url = _umbracoWrapper.TypedContent(link.Id).Url;
+				var content = _umbracoWrapper.TypedContent(link.Id);
+				if (content != null)
+				{
+					link.Url = content.Url;
+				}
 			}
 
 			return link;
