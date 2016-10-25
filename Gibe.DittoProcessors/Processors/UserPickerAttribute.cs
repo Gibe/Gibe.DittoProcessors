@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Gibe.DittoProcessors.Wrappers;
 using Ninject;
 using Umbraco.Core.Services;
 
@@ -6,14 +7,14 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class UserPickerAttribute : TestableDittoProcessorAttribute
 	{
-		private readonly IUserService _userService;
+		private readonly IUserServiceWrapper _userService;
 
 		public UserPickerAttribute()
 		{
-			_userService = DependencyResolver.Current.GetService<IUserService>();
+			_userService = DependencyResolver.Current.GetService<IUserServiceWrapper>();
 		}
 
-		public UserPickerAttribute(IUserService userService)
+		public UserPickerAttribute(IUserServiceWrapper userService)
 		{
 			_userService = userService;
 		}
@@ -26,7 +27,7 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 
-			return _userService.GetUserById(id);
+			return _userService.GetUserService().GetUserById(id);
 		}
 	}
 }
