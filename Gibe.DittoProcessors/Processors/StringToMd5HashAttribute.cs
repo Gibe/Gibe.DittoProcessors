@@ -12,10 +12,8 @@ namespace Gibe.DittoProcessors.Processors
 
 			var stringValue = Value as string;
 
-			// byte array representation of that string
 			byte[] encodedValue = new UTF8Encoding().GetBytes(stringValue);
 
-			// need MD5 to calculate the hash
 			byte[] hashValue = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedValue);
 
 			// string representation (similar to UNIX format)
