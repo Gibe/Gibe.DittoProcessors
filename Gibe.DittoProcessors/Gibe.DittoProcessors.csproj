@@ -272,6 +272,7 @@
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
     <Compile Include="Processors\ParentAttribute.cs" />
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
+    <Compile Include="Processors\StringToMd5HashAttribute.cs" />
     <Compile Include="Processors\TagsAttribute.cs" />
     <Compile Include="Processors\TestableDittoProcessorAttribute.cs" />
     <Compile Include="Processors\UrlAttribute.cs" />
