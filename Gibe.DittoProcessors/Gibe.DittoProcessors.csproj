@@ -272,6 +272,7 @@
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
     <Compile Include="Processors\ParentAttribute.cs" />
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
+    <Compile Include="Processors\StringIsNotEmptyAttribute.cs" />
     <Compile Include="Processors\StringToCssClassAttribute.cs" />
     <Compile Include="Processors\StringToMd5HashAttribute.cs" />
     <Compile Include="Processors\TagsAttribute.cs" />
