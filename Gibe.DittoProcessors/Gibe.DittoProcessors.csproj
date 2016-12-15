@@ -272,6 +272,7 @@
     <Compile Include="Processors\MultipleImagePickerAttribute.cs" />
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
     <Compile Include="Processors\ParentAttribute.cs" />
+    <Compile Include="Processors\RadioboxAttribute.cs" />
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
     <Compile Include="Processors\StringIsNotEmptyAttribute.cs" />
     <Compile Include="Processors\StringToCssClassAttribute.cs" />
