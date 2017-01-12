@@ -2,7 +2,7 @@
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class StringIsNotEmptyAttribute : TestableDittoProcessorAttribute
+	public class StringIsNotNullOrEmptyAttribute : TestableDittoProcessorAttribute
 	{
 		public override object ProcessValue()
 		{
