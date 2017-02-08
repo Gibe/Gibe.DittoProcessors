@@ -38,7 +38,7 @@ namespace Gibe.DittoProcessors.Media
 
 			if (!isFolder)
 			{
-				if (_allowedImageMediaTypes.Contains(imageOrFolder.DocumentTypeAlias))
+				if (CanConvertImage(_umbracoWrapper, imageOrFolder))
 				{
 					return ConvertImage(_umbracoWrapper, imageOrFolder);
 				}
@@ -158,9 +158,19 @@ namespace Gibe.DittoProcessors.Media
 		}
 
 		/// <summary>
-		/// converts the passed umbraco content into a site media image
+		/// checks if we can convert the passed umbraco content into a site media image
 		/// </summary>
-		private static MediaImageModel ConvertImage(IUmbracoWrapper umbracoWrapper, IPublishedContent image)
+		private static bool CanConvertImage(IUmbracoWrapper umbracoWrapper, IPublishedContent image)
+		{
+			return !string.IsNullOrEmpty(image.Url)
+				&& umbracoWrapper.HasProperty(image, "umbracoWidth")
+				&& umbracoWrapper.HasProperty(image, "umbracoHeight");
+		}
+
+        /// <summary>
+        /// converts the passed umbraco content into a site media image
+        /// </summary>
+        private static MediaImageModel ConvertImage(IUmbracoWrapper umbracoWrapper, IPublishedContent image)
 		{
 			return new MediaImageModel
 			{
