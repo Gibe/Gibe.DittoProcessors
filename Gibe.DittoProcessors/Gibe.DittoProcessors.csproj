@@ -251,6 +251,7 @@
     <Compile Include="Media\MediaService.cs" />
     <Compile Include="Media\Models\MediaFileModel.cs" />
     <Compile Include="Media\Models\MediaImageModel.cs" />
+    <Compile Include="Processors\DropdownMultipleAttribute.cs" />
     <Compile Include="Processors\MultiNodeTreePickerAttribute.cs" />
     <Compile Include="Processors\ChildrenAttribute.cs" />
     <Compile Include="Processors\ArchetypeMailAddressAttribute.cs" />
@@ -271,13 +272,19 @@
     <Compile Include="Processors\MultipleImagePickerAttribute.cs" />
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
     <Compile Include="Processors\ParentAttribute.cs" />
+    <Compile Include="Processors\RadioboxAttribute.cs" />
     <Compile Include="Processors\RelatedLinksAttribute.cs" />
+    <Compile Include="Processors\StringIsNotEmptyAttribute.cs" />
+    <Compile Include="Processors\StringToCssClassAttribute.cs" />
+    <Compile Include="Processors\StringToMd5HashAttribute.cs" />
     <Compile Include="Processors\TagsAttribute.cs" />
     <Compile Include="Processors\TestableDittoProcessorAttribute.cs" />
     <Compile Include="Processors\UrlAttribute.cs" />
     <Compile Include="Processors\UserPickerAttribute.cs" />
     <Compile Include="Processors\VideoPickerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\IUserServiceWrapper.cs" />
+    <Compile Include="Wrappers\UserServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
