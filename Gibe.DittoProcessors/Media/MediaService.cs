@@ -175,8 +175,9 @@ namespace Gibe.DittoProcessors.Media
 			return new MediaImageModel
 			{
 				Url = image.Url,
+				Alt = image.Name,
 				Width = umbracoWrapper.GetPropertyValue<int>(image, "umbracoWidth"),
-				Height = umbracoWrapper.GetPropertyValue<int>(image, "umbracoHeight")
+				Height = umbracoWrapper.GetPropertyValue<int>(image, "umbracoHeight"),
 			};
 		}
 
