@@ -45,7 +45,7 @@ namespace Gibe.DittoProcessors.Processors
 						break;
 					case GridEditorAliases.Media:
 						var gridContentMediaValue = JsonConvert.DeserializeObject<GridContentMediaValue>(control.Value.ToString());
-						var mediaImage = _mediaService.GetImage<CaptionMediaImageModel>(gridContentMediaValue.Id);
+						var mediaImage = _mediaService.GetImage<GridMediaImageModel>(gridContentMediaValue.Id);
 						mediaImage.Caption = gridContentMediaValue.Caption;
 						control.MediaImage = mediaImage;
 						break;

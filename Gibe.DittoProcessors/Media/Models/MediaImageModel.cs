@@ -21,7 +21,7 @@ namespace Gibe.DittoProcessors.Media.Models
 		public int Height { get; set; }
 	}
 
-	public class CaptionMediaImageModel : MediaImageModel
+	public class GridMediaImageModel : MediaImageModel
 	{
 		[DittoIgnore]
 		public string Caption { get; set; }

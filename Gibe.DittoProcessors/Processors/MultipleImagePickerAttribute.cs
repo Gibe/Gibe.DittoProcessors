@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Gibe.DittoProcessors.Media;
 using Gibe.DittoProcessors.Media.Models;
@@ -26,7 +27,10 @@ namespace Gibe.DittoProcessors.Processors
 
 			int id = int.TryParse(Value.ToString(), out id) ? id : 0;
 
-			return id == 0 ? null : MediaService().GetImages(_type, id);
+			return id == 0 ? null : MediaService()
+				.GetImages(_type, id)
+				.Select(x => Convert.ChangeType(x, _type))
+				.ToList();
 		}
 	}
 }
