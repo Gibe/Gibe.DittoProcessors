@@ -1,17 +1,29 @@
-﻿using System.ComponentModel;
+﻿using Our.Umbraco.Ditto;
 
 namespace Gibe.DittoProcessors.Media.Models
 {
-	public class MediaImageModel
+	internal interface IMediaImageModel
 	{
+		string Url { get; set; }
+		int Width { get; set; }
+		int Height { get; set; }
+	}
+
+	public class MediaImageModel : IMediaImageModel
+	{
+		[UmbracoProperty("url")]
 		public string Url { get; set; }
+
+		[UmbracoProperty("umbracoWidth")]
 		public int Width { get; set; }
+
+		[UmbracoProperty("umbracoHeight")]
 		public int Height { get; set; }
+	}
 
-		[Description("the alt text is not held with the image and will not be automatically set")]
-		public string Alt { get; set; }
-
-		[Description("the caption is not held with the image and will not be automatically set")]
+	public class CaptionMediaImageModel : MediaImageModel
+	{
+		[DittoIgnore]
 		public string Caption { get; set; }
 	}
 }

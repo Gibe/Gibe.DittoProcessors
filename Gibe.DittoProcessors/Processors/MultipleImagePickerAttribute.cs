@@ -1,22 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Gibe.DittoProcessors.Media;
+using Gibe.DittoProcessors.Media.Models;
 using Ninject;
 using Our.Umbraco.Ditto;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class MultipleImagePickerAttribute : DittoProcessorAttribute
+	public class MultipleImagePickerAttribute : InjectableProcessorAttribute
 	{
-		private readonly IMediaService _mediaService;
+		public Func<IMediaService> MediaService => Inject<IMediaService>();
+		private readonly Type _type;
 
-		public MultipleImagePickerAttribute(IMediaService mediaService)
+		public MultipleImagePickerAttribute(Type type = null)
 		{
-			_mediaService = mediaService;
-		}
-
-		public MultipleImagePickerAttribute()
-		{
-			_mediaService = DependencyResolver.Current.GetService<IMediaService>();
+			_type = type ?? typeof(MediaImageModel);
 		}
 
 		public override object ProcessValue()
@@ -28,7 +26,7 @@ namespace Gibe.DittoProcessors.Processors
 
 			int id = int.TryParse(Value.ToString(), out id) ? id : 0;
 
-			return id == 0 ? null : _mediaService.GetImages(id);
+			return id == 0 ? null : MediaService().GetImages(_type, id);
 		}
 	}
 }
