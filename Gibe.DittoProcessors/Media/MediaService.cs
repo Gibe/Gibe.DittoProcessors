@@ -22,9 +22,6 @@ namespace Gibe.DittoProcessors.Media
 			_modelConverter = modelConverter;
 		}
 
-
-		// TODO: Constrain on IMediaImageModel instead of MediaImageModel // Why?
-
 		#region images
 
 		/// <summary>
@@ -59,21 +56,21 @@ namespace Gibe.DittoProcessors.Media
 			}
 
 			if (id == 0) return null;
-			var media = IsMediaOrFolder(id);
+			var media = GetMedia(id);
 			if (media.mediaItem == null) return null;
 
 			if (!media.isFolder)
 			{
 				if (CanConvertImage(_umbracoWrapper, media.mediaItem))
 				{
-					return (MediaImageModel)ConvertImage(_modelConverter, mediaType, media.mediaItem);
+					return ConvertImage(_modelConverter, mediaType, media.mediaItem);
 				}
 				throw new ArgumentException("Image id is not of an allowed document type!");
 			}
 
 			var children = ChildImages(media.mediaItem);
 			if (children.FirstOrDefault() == null) return null;
-			return (MediaImageModel)ConvertImage(_modelConverter, mediaType, children.First());
+			return ConvertImage(_modelConverter, mediaType, children.First());
 		}
 
 		public List<MediaImageModel> GetImages(Type mediaType, int id)
@@ -84,15 +81,14 @@ namespace Gibe.DittoProcessors.Media
 			}
 
 			if (id == 0) return null;
-			var media = IsMediaOrFolder(id);
+			var media = GetMedia(id);
 			if (media.mediaItem == null) return null;
 
 			if (!media.isFolder)
 			{
 				if (CanConvertImage(_umbracoWrapper, media.mediaItem))
 				{
-					return ConvertImage(_modelConverter, mediaType, media.mediaItem).AsEnumerableOfOne()
-						.Select(x => (MediaImageModel)x).ToList();
+					return ConvertImage(_modelConverter, mediaType, media.mediaItem).AsEnumerableOfOne().ToList();
 				}
 				throw new ArgumentException("Image id is not of an allowed document type!");
 			}
@@ -100,10 +96,10 @@ namespace Gibe.DittoProcessors.Media
 			var childImages = ChildImages(media.mediaItem);
 
 			return childImages.Any() ? childImages.Select(node => _umbracoWrapper.TypedMedia(node.Id))
-				.Select(x => (MediaImageModel)ConvertImage(_modelConverter, mediaType, x)).ToList() : null;
+				.Select(x => ConvertImage(_modelConverter, mediaType, x)).ToList() : null;
 		}
 		
-		private (IPublishedContent mediaItem, bool isFolder) IsMediaOrFolder(int id)
+		private (IPublishedContent mediaItem, bool isFolder) GetMedia(int id)
 		{
 			var mediaItem = _umbracoWrapper.TypedMedia(id);
 			var isFolder = CheckForFolder(mediaItem);
@@ -201,14 +197,9 @@ namespace Gibe.DittoProcessors.Media
         /// <summary>
         /// converts the passed umbraco content into a site media image
         /// </summary>
-        private static T ConvertImage<T>(IModelConverter modelConverter, IPublishedContent image) where T : MediaImageModel
-        {
-	        return modelConverter.ToModel<T>(image);
-		}
-
-		private static object ConvertImage(IModelConverter modelConverter, Type type, IPublishedContent image)
+		private static MediaImageModel ConvertImage(IModelConverter modelConverter, Type type, IPublishedContent image)
 		{
-			return modelConverter.ToModel(type, image);
+			return (MediaImageModel)modelConverter.ToModel(type, image);
 		}
 
 		/// <summary>
