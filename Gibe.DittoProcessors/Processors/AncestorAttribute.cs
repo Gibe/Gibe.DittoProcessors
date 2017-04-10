@@ -35,7 +35,7 @@ namespace Gibe.DittoProcessors.Processors
 			{
 				return UmbracoWrapper().AncestorOrSelf(Context.Content, _maxDepth);
 			}
-			return UmbracoWrapper().Ancestor(Context.Content);
+			return UmbracoWrapper().AncestorOrSelf(Context.Content);
 		}
 	}
 }
