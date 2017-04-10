@@ -6,16 +6,16 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class AncestorAttribute : InjectableProcessorAttribute
 	{
-		public Func<IUmbracoWrapper> UmbracoWrapper => Inject<IUmbracoWrapper>();
+		public Func<IUmbracoWrapper> UmbracoWrapper { get; set; } = Inject<IUmbracoWrapper>();
 
-		private readonly int _maxDepth;
+		private readonly int? _maxDepth;
 		private readonly string _docTypeAlias;
 
 		public AncestorAttribute()
 		{
 		}
 
-		public AncestorAttribute(int maxDepth)
+		public AncestorAttribute(int? maxDepth)
 		{
 			_maxDepth = maxDepth;
 		}
@@ -31,9 +31,9 @@ namespace Gibe.DittoProcessors.Processors
 			{
 				return UmbracoWrapper().AncestorOrSelf(Context.Content, _docTypeAlias);
 			}
-			else if (_maxDepth != null)
+			else if (_maxDepth.HasValue)
 			{
-				return UmbracoWrapper().AncestorOrSelf(Context.Content, _maxDepth);
+				return UmbracoWrapper().AncestorOrSelf(Context.Content, _maxDepth.Value);
 			}
 			return UmbracoWrapper().AncestorOrSelf(Context.Content);
 		}
