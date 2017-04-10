@@ -257,6 +257,7 @@
     <Compile Include="Media\MediaService.cs" />
     <Compile Include="Media\Models\MediaFileModel.cs" />
     <Compile Include="Media\Models\MediaImageModel.cs" />
+    <Compile Include="Processors\AncestorAttribute.cs" />
     <Compile Include="Processors\DropdownMultipleAttribute.cs" />
     <Compile Include="Processors\InjectableProcessorAttribute.cs" />
     <Compile Include="Processors\MultiNodeTreePickerAttribute.cs" />
