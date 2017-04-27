@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Our.Umbraco.Ditto;
 using Umbraco.Core.Models;
 
@@ -18,37 +19,33 @@ namespace Gibe.DittoServices.ModelConverters
 
 	public class FakeModelConverter : IModelConverter
 	{
-		private readonly IEnumerable<object> _models;
-		private readonly object _model;
+		public static FakeModelConverter Of(
+			params (Predicate<IPublishedContent>, Func<IPublishedContent, Type, object>)[] options)
+			=> new FakeModelConverter((i, t) => options.First(o => o.Item1(i)).Item2(i, t));
 
-		public FakeModelConverter(IEnumerable<object> models)
+		public static FakeModelConverter Of<T>(T @object)
+			=> new FakeModelConverter((i, t) => @object);
+
+		private readonly Func<IPublishedContent, Type, object> _converter;
+
+		public FakeModelConverter(Func<IPublishedContent, Type, object> converter)
 		{
-			_models = models;
+			_converter = converter;
 		}
 
-		public FakeModelConverter(object model)
-		{
-			_model = model;
-		}
-
-		public T ToModel<T>(IPublishedContent content, IEnumerable<DittoProcessorContext> contexts = null) where T : class
-		{
-			return (T)_model;
-		}
+		public T ToModel<T>(IPublishedContent content, IEnumerable<DittoProcessorContext> contexts = null)
+			where T : class
+			=> (T)ToModel(typeof(T), content, contexts);
 
 		public object ToModel(Type type, IPublishedContent content, IEnumerable<DittoProcessorContext> contexts = null)
-		{
-			return _model;
-		}
+			=> _converter(content, type);
 
-		public IEnumerable<T> ToModel<T>(IEnumerable<IPublishedContent> nodes, IEnumerable<DittoProcessorContext> contexts = null) where T : class
-		{
-			return (IEnumerable<T>)_models;
-		}
+		public IEnumerable<T> ToModel<T>(IEnumerable<IPublishedContent> nodes,
+			IEnumerable<DittoProcessorContext> contexts = null) where T : class
+			=> nodes.Select(n => ToModel<T>(n, contexts));
 
-		public IEnumerable<object> ToModel(Type type, IEnumerable<IPublishedContent> content, IEnumerable<DittoProcessorContext> contexts = null)
-		{
-			return _models;
-		}
+		public IEnumerable<object> ToModel(Type type, IEnumerable<IPublishedContent> content,
+			IEnumerable<DittoProcessorContext> contexts = null)
+			=> content.Select(c => ToModel(type, c, contexts));
 	}
 }
