@@ -6,18 +6,18 @@ namespace Gibe.DittoProcessors.Processors
 {
 	public class ChildrenAttribute : DittoProcessorAttribute
 	{
-		private readonly string _docTypeAlias;
+		private readonly string[] _docTypeAlias;
 		
-		public ChildrenAttribute(string docTypeAlias)
+		public ChildrenAttribute(params string[] docTypeAlias)
 		{
 			_docTypeAlias = docTypeAlias;
 		}
-
+        
 		public override object ProcessValue()
 		{
 			return Context.Content
 				.Children()
-				.Where(d => d.DocumentTypeAlias == _docTypeAlias)
+				.Where(d => _docTypeAlias.Contains(d.DocumentTypeAlias))
 				.ToList();
 		}
 		
