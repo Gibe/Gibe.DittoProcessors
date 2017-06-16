@@ -31,4 +31,4 @@ Install via nuget ``` install-package Gibe.DittoProcessors ```
 
 # DittoServices
 
-Install via nuget ``` install-package Gibe.DittoProcessors ```
+Install via nuget ``` install-package Gibe.DittoServices ```
