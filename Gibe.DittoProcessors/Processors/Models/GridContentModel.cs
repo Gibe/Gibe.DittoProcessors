@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.Mvc;
-using Gibe.DittoProcessors.Media.Models;
 using Newtonsoft.Json;
 
 namespace Gibe.DittoProcessors.Processors.Models
@@ -54,7 +53,7 @@ namespace Gibe.DittoProcessors.Processors.Models
 
 						public MvcHtmlString Html { get; set; }
 
-						public MediaImageModel MediaImage { get; set; }
+						public GridContentMediaValue MediaImage { get; set; }
 
 						public string Text { get; set; }
 					}

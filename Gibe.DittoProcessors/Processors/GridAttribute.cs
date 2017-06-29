@@ -3,8 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using Gibe.DittoProcessors.Constants;
 using Gibe.DittoProcessors.Media;
-using Gibe.DittoProcessors.Media.Models;
 using Gibe.DittoProcessors.Processors.Models;
+using Gibe.DittoServices.ModelConverters;
 using Newtonsoft.Json;
 using Ninject;
 using Our.Umbraco.Ditto;
@@ -15,14 +15,17 @@ namespace Gibe.DittoProcessors.Processors
 	public class GridAttribute : DittoProcessorAttribute
 	{
 		private readonly IMediaService _mediaService;
+		private readonly IModelConverter _modelConverter;
 
-		public GridAttribute(IMediaService mediaService)
+		public GridAttribute(IMediaService mediaService, IModelConverter modelConverter)
 		{
 			_mediaService = mediaService;
+			_modelConverter = modelConverter;
 		}
 
 		public GridAttribute()
 		{
+			_modelConverter = DependencyResolver.Current.GetService<IModelConverter>();
 			_mediaService = DependencyResolver.Current.GetService<IMediaService>();
 		}
 
@@ -45,7 +48,7 @@ namespace Gibe.DittoProcessors.Processors
 						break;
 					case GridEditorAliases.Media:
 						var gridContentMediaValue = JsonConvert.DeserializeObject<GridContentMediaValue>(control.Value.ToString());
-						var mediaImage = _mediaService.GetImage<GridMediaImageModel>(gridContentMediaValue.Id);
+						var mediaImage = _modelConverter.ToModel<GridContentMediaValue>(_mediaService.Media(gridContentMediaValue.Id));
 						mediaImage.Caption = gridContentMediaValue.Caption;
 						control.MediaImage = mediaImage;
 						break;

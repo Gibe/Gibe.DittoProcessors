@@ -1,19 +1,12 @@
 ﻿using System;
 using Gibe.DittoProcessors.Media;
-using Gibe.DittoProcessors.Media.Models;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class ImagePickerAttribute : InjectableProcessorAttribute
+	public class MediaAttribute : InjectableProcessorAttribute
 	{
 		public Func<IMediaService> MediaService => Inject<IMediaService>();
-		private readonly Type _type;
-
-		public ImagePickerAttribute(Type type = null)
-		{
-			_type = type ?? typeof(MediaImageModel);
-		}
-
+	
 		public override object ProcessValue()
 		{
 			int id;
@@ -21,8 +14,7 @@ namespace Gibe.DittoProcessors.Processors
 			{
 				return null;
 			}
-
-			return Convert.ChangeType(MediaService().GetImage(_type, id), _type);
+			return MediaService().Media(id);
 		}
 	}
 }

@@ -237,7 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gibe.DittoProcessors\Gibe.DittoProcessors.csproj">
-      <Project>{EB493949-BFFB-4595-9A71-DB9C641A795A}</Project>
+      <Project>{eb493949-bffb-4595-9a71-db9c641a795a}</Project>
       <Name>Gibe.DittoProcessors</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gibe.DittoServices\Gibe.DittoServices.csproj">
