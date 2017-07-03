@@ -255,8 +255,7 @@
     <Compile Include="Constants\MediaTypes.cs" />
     <Compile Include="Media\IMediaService.cs" />
     <Compile Include="Media\MediaService.cs" />
-    <Compile Include="Media\Models\MediaFileModel.cs" />
-    <Compile Include="Media\Models\MediaImageModel.cs" />
+    <Compile Include="Processors\AbsoluteUrlAttribute.cs" />
     <Compile Include="Processors\AncestorAttribute.cs" />
     <Compile Include="Processors\DropdownMultipleAttribute.cs" />
     <Compile Include="Processors\InjectableProcessorAttribute.cs" />
@@ -266,10 +265,9 @@
     <Compile Include="Processors\ArchetypeStringListAttribute.cs" />
     <Compile Include="Processors\ContentPickerToUrlAttribute.cs" />
     <Compile Include="Processors\ContentPickerAttribute.cs" />
-    <Compile Include="Processors\FilePickerAttribute.cs" />
     <Compile Include="Processors\GetPreValueAsStringAttribute.cs" />
     <Compile Include="Processors\GridAttribute.cs" />
-    <Compile Include="Processors\ImagePickerAttribute.cs" />
+    <Compile Include="Processors\MediaAttribute.cs" />
     <Compile Include="Processors\LinkPickerAttribute.cs" />
     <Compile Include="Processors\MetaSEOAttribute.cs" />
     <Compile Include="Processors\Models\GridContentMediaValue.cs" />
@@ -277,7 +275,7 @@
     <Compile Include="Processors\Models\LinkPickerModel.cs" />
     <Compile Include="Processors\Models\MetaModel.cs" />
     <Compile Include="Processors\Models\RelatedLinkModel.cs" />
-    <Compile Include="Processors\MultipleImagePickerAttribute.cs" />
+    <Compile Include="Processors\MultipleMediaPickerAttribute.cs" />
     <Compile Include="Processors\MultipleTextstringAttribute.cs" />
     <Compile Include="Processors\ParentAttribute.cs" />
     <Compile Include="Processors\RadioboxAttribute.cs" />
