@@ -9,8 +9,6 @@ namespace Gibe.DittoProcessors.Processors
 	{
 		protected static Func<T> Inject<T>()
 		{
-			Debug.Assert(DependencyResolver.Current == null || DependencyResolver.Current.GetService<T>() != null);
-
 			return () => DependencyResolver.Current.GetService<T>();
 		}
 
