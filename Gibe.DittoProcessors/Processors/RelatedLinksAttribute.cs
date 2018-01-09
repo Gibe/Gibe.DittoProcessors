@@ -43,7 +43,7 @@ namespace Gibe.DittoProcessors.Processors
 
 			if (url == null)
 			{
-				LogHelper.Warn<RelatedLinksAttribute>($"Related link with caption {link.Caption} has invalid URL");
+				LogHelper.Warn<RelatedLinksAttribute>($"Related link with caption {link.Caption} on page {Context.Content.Id} has invalid URL");
 			}
 			return new RelatedLinkModel
 			{
