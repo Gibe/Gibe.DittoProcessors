@@ -4,6 +4,7 @@ using System.Linq;
 using Gibe.DittoServices.ModelConverters;
 using Gibe.UmbracoWrappers;
 using Umbraco.Core.Models;
+using Umbraco.Web;
 
 namespace Gibe.DittoProcessors.Processors
 {
@@ -35,8 +36,10 @@ namespace Gibe.DittoProcessors.Processors
 
 		public IEnumerable<BreadcrumbItemModel> AncestorsPages(IPublishedContent content)
 		{
-			foreach (var item in UmbracoWrapper().Ancestors(content).Where(i => i.IsVisible() && i.DocumentTypeAlias != "").Select(i => ModelConverter().ToModel<BreadcrumbItem>(i)))
-			//foreach (var item in content.Ancestors().Where("Visible && DocumentTypeAlias !=\"\""))
+			foreach (var item in UmbracoWrapper()
+				.Ancestors(content)
+				.Where(i => i.IsVisible() && i.DocumentTypeAlias != "")
+				.Select(i => ModelConverter().ToModel<BreadcrumbItem>(i)))
 			{
 				if (item.Level <= 1) break;
 				yield return new BreadcrumbItemModel(item.Name, item.Url, false);
