@@ -35,7 +35,7 @@ namespace Gibe.DittoProcessors.Processors
 
 		public IEnumerable<BreadcrumbItemModel> AncestorsPages(IPublishedContent content)
 		{
-			foreach (var item in UmbracoWrapper().Ancestors(content).Select(i => ModelConverter().ToModel<BreadcrumbItem>(i)).Where(i => i.Visible && i.DocumentTypeAlias != ""))
+			foreach (var item in UmbracoWrapper().Ancestors(content).Where(i => i.IsVisible() && i.DocumentTypeAlias != "").Select(i => ModelConverter().ToModel<BreadcrumbItem>(i)))
 			//foreach (var item in content.Ancestors().Where("Visible && DocumentTypeAlias !=\"\""))
 			{
 				if (item.Level <= 1) break;
