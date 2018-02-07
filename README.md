@@ -10,6 +10,7 @@ Install via nuget ``` install-package Gibe.DittoProcessors ```
 |AbsoluteUrlAttribute| Return the ```UrlAbsolute``` of an ```IPublishedContent``` |
 |AncestorAttribute| Get an ancestor of the current content by alias or depth |
 |ArchetypeStringList| Output archetype content as ```IEnumerable``` of ```string``` |
+|Breadcrumbs| Return an ```IEnumerable``` of ```BreadcrumbItemModel``` one for each visible ancestor including current page and homepage  |
 |Children| Return the children of ```docttypeAlias``` as ```IEnumerable``` of ```string``` |
 |ContentPicker| Return the ```IPublishedContent``` linked to by the content picker |
 |ContentPickerToUrl| Return the URL of the ```IPublishedContent``` linked to by the content picker |
