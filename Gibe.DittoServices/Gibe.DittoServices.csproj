@@ -153,6 +153,9 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Our.Umbraco.Ditto, Version=0.10.6091.32633, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Our.Umbraco.Ditto.0.10.0\lib\net45\Our.Umbraco.Ditto.dll</HintPath>
       <Private>True</Private>
@@ -287,6 +290,7 @@
     <Compile Include="IUmbracoContentService.cs" />
     <Compile Include="ModelConverters\DittoModelConverter.cs" />
     <Compile Include="ModelConverters\IModelConverter.cs" />
+    <Compile Include="Ninject\NinjectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
