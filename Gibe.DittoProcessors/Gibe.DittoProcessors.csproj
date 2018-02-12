@@ -253,6 +253,7 @@
     <Compile Include="Constants\MediaTypes.cs" />
     <Compile Include="Media\IMediaService.cs" />
     <Compile Include="Media\MediaService.cs" />
+    <Compile Include="Ninject\DittoProcessorsModule.cs" />
     <Compile Include="Processors\AbsoluteUrlAttribute.cs" />
     <Compile Include="Processors\AncestorAttribute.cs" />
     <Compile Include="Processors\DropdownMultipleAttribute.cs" />

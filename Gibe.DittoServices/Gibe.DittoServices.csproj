@@ -290,7 +290,7 @@
     <Compile Include="IUmbracoContentService.cs" />
     <Compile Include="ModelConverters\DittoModelConverter.cs" />
     <Compile Include="ModelConverters\IModelConverter.cs" />
-    <Compile Include="Ninject\NinjectModule.cs" />
+    <Compile Include="Ninject\DittoServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
