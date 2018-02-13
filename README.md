@@ -4,6 +4,8 @@
 
 Install via nuget ``` install-package Gibe.DittoProcessors ```
 
+Ninject Module is available ``` Gibe.DittoProcessors.Ninject.DittoProcessorsModule ```
+
 ## Processors
 | Processor | Description |
 |:----------|:------------|
@@ -34,6 +36,9 @@ Install via nuget ``` install-package Gibe.DittoProcessors ```
 |UserPicker| Return the selected user as ```IUser``` |
 |VideoPicker| Return the ```Url``` of an ```IPublishedContent``` |
 
+
 # DittoServices
 
 Install via nuget ``` install-package Gibe.DittoServices ```
+
+Ninject Module is available ``` Gibe.DittoServices.Ninject.DittoServicesModule ```
