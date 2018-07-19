@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Gibe.DittoProcessors.Wrappers;
 using Ninject;
 using Umbraco.Core.Models.Membership;
@@ -6,20 +7,10 @@ using Umbraco.Core.Services;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class UserPickerAttribute : TestableDittoProcessorAttribute
+	public class UserPickerAttribute : InjectableProcessorAttribute
 	{
-		private readonly IUserServiceWrapper _userService;
-
-		public UserPickerAttribute()
-		{
-			_userService = DependencyResolver.Current.GetService<IUserServiceWrapper>();
-		}
-
-		public UserPickerAttribute(IUserServiceWrapper userService)
-		{
-			_userService = userService;
-		}
-
+		public Func<IUserServiceWrapper> UserServiceWrapper => Inject<IUserServiceWrapper>();
+		
 		public override object ProcessValue()
 		{
 			if (Value is IUser)
@@ -33,7 +24,7 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 
-			return _userService.GetUserService().GetUserById(id);
+			return UserServiceWrapper().GetUserService().GetUserById(id);
 		}
 	}
 }

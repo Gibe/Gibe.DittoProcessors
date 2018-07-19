@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Gibe.UmbracoWrappers;
 using Umbraco.Core;
 using Umbraco.Core.Models;
-using Umbraco.Web;
 
 namespace Gibe.DittoProcessors.Media
 {
@@ -22,9 +20,19 @@ namespace Gibe.DittoProcessors.Media
 			return _umbracoWrapper.TypedMedia(id);
 		}
 
+		public IPublishedContent Media(string udi)
+		{
+			return _umbracoWrapper.TypedMedia(Udi.Parse(udi));
+		}
+
 		public IEnumerable<IPublishedContent> Media(IEnumerable<int> ids)
 		{
 			return ids.Select(_umbracoWrapper.TypedMedia);
+		}
+
+		public IEnumerable<IPublishedContent> Media(IEnumerable<string> udis)
+		{
+			return udis.Select(udi => _umbracoWrapper.TypedMedia(Udi.Parse(udi)));
 		}
 	}
 }

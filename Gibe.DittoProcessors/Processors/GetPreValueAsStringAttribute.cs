@@ -1,23 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Gibe.UmbracoWrappers;
 using Ninject;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class GetPreValueAsStringAttribute : TestableDittoProcessorAttribute
+	public class GetPreValueAsStringAttribute : InjectableProcessorAttribute
 	{
-		private readonly IUmbracoHelperWrapper _umbracoHelperWrapper;
-
-		public GetPreValueAsStringAttribute(IUmbracoHelperWrapper umbracoHelperWrapper)
-		{
-			_umbracoHelperWrapper = umbracoHelperWrapper;
-		}
-
-		public GetPreValueAsStringAttribute()
-		{
-			_umbracoHelperWrapper = DependencyResolver.Current.GetService<IUmbracoHelperWrapper>();
-		}
-
+		public Func<IUmbracoHelperWrapper> UmbracoHelperWrapper => Inject<IUmbracoHelperWrapper>();
+		
 		public override object ProcessValue()
 		{
 			int id;
@@ -26,7 +17,7 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 
-			return _umbracoHelperWrapper.GetPreValueAsString(id);
+			return UmbracoHelperWrapper().GetPreValueAsString(id);
 		}
 	}
 }

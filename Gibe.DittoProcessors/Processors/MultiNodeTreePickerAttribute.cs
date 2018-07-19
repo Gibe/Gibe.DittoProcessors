@@ -1,25 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
 using Gibe.UmbracoWrappers;
-using Ninject;
-using Our.Umbraco.Ditto;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class MultiNodeTreePickerAttribute : DittoProcessorAttribute
+	public class MultiNodeTreePickerAttribute : InjectableProcessorAttribute
 	{
-		private readonly IUmbracoWrapper _umbracoWrapper;
-
-		public MultiNodeTreePickerAttribute()
-		{
-			_umbracoWrapper = DependencyResolver.Current.GetService<IUmbracoWrapper>();
-		}
-
-		public MultiNodeTreePickerAttribute(IUmbracoWrapper umbracoWrapper)
-		{
-			_umbracoWrapper = umbracoWrapper;
-		}
+		public Func<IUmbracoWrapper> UmbracoWrapper => Inject<IUmbracoWrapper>();
 
 		public override object ProcessValue()
 		{
@@ -34,7 +21,7 @@ namespace Gibe.DittoProcessors.Processors
 
 			return ids
 				.Where(i => i > 0)
-				.Select(_umbracoWrapper.TypedContent);
+				.Select(UmbracoWrapper().TypedContent);
 		}
 	}
 }
