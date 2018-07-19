@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class CurrentContentParentAttribute : TestableDittoProcessorAttribute
+	public class ParentAttribute : TestableDittoProcessorAttribute
 	{
 		public override object ProcessValue()
 		{

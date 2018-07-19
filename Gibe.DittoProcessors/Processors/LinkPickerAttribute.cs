@@ -27,12 +27,8 @@ namespace Gibe.DittoProcessors.Processors
 				return null;
 			}
 
-			if (Value is LinkPickerModel)
-			{
-				return Value;
-			}
-
 			var link = JsonConvert.DeserializeObject<LinkPickerModel>(Value.ToString());
+
 			if (link.Id != default(int))
 			{
 				var content = _umbracoWrapper.TypedContent(link.Id);

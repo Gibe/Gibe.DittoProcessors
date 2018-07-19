@@ -13,7 +13,7 @@ namespace Gibe.DittoProcessors.Processors
 		public override object ProcessValue()
 		{
 			var content = Value as IPublishedContent;
-			return content?.Url;
+			return content.Url;
 		}
 	}
 }

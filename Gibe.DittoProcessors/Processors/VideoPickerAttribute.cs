@@ -1,16 +1,32 @@
 ﻿using System.Web.Mvc;
 using Gibe.UmbracoWrappers;
 using Our.Umbraco.Ditto;
-using Umbraco.Core.Models;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class VideoPickerAttribute : MediaAttribute
+	public class VideoPickerAttribute : DittoProcessorAttribute
 	{
+		private readonly IUmbracoWrapper _umbracoWrapper;
+
+		public VideoPickerAttribute()
+		{
+			_umbracoWrapper = DependencyResolver.Current.GetService<IUmbracoWrapper>();
+		}
+
+		public VideoPickerAttribute(IUmbracoWrapper umbracoWrapper)
+		{
+			_umbracoWrapper = umbracoWrapper;
+		}
+
 		public override object ProcessValue()
 		{
-			var media = base.ProcessValue() as IPublishedContent;
-			return media?.Url;
+			int id;
+			if (string.IsNullOrEmpty(Value?.ToString()) || !int.TryParse(Value.ToString(), out id) || id == 0)
+			{
+				return null;
+			}
+
+			return _umbracoWrapper.TypedMedia(id)?.Url;
 		}
 	}
 }

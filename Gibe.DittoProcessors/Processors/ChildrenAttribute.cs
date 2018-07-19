@@ -4,11 +4,11 @@ using Umbraco.Web;
 
 namespace Gibe.DittoProcessors.Processors
 {
-	public class CurrentContentChildrenAttribute : DittoProcessorAttribute
+	public class ChildrenAttribute : DittoProcessorAttribute
 	{
 		private readonly string[] _docTypeAlias;
 		
-		public CurrentContentChildrenAttribute(params string[] docTypeAlias)
+		public ChildrenAttribute(params string[] docTypeAlias)
 		{
 			_docTypeAlias = docTypeAlias;
 		}
