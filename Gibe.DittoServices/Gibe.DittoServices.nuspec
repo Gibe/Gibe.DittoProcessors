@@ -13,7 +13,7 @@
 			<dependency id="Our.Umbraco.Ditto" version="0.12.0" />
 			<dependency id="UmbracoCms.Core" version="7.3.7" />
 			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="Ninject" version="3.3.4" />
+			<dependency id="Ninject" version="3.2.2" />
 		</dependencies>
 	</metadata>
 	<files>
